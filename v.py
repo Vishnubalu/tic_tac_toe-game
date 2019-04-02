@@ -1,6 +1,6 @@
 class Evaluate:
-
-
+    
+    
     def check_win(self, array):
 
         last_num = 0
@@ -29,6 +29,5 @@ class Evaluate:
             return arr
         else:
             return []
-
 
 csss = Evaluate()
