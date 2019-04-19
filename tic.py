@@ -1,4 +1,3 @@
-
 import v
 import random
 import numpy as np
@@ -15,17 +14,18 @@ class Main:
 def display():
     print("\n\n")
     for i in range(len(main.dis)):
-        if (i+1) % 3 == 0:
+        if (i + 1) % 3 == 0:
             print(main.dis[i])
 
             print("\n\n")
         else:
             print(main.dis[i], end="\t\t")
 
+
 def system_time():
     n = []
-    if len(main.table) == len(main.system)+len(main.player):
-        print(" ------- DRAW MATCHING----------")
+    if len(main.table) == len(main.system) + len(main.player):
+        print(" ************ DRAW MATCHING ************")
         return 0
     else:
         if 2 <= len(main.system):
@@ -34,12 +34,11 @@ def system_time():
         for value in n:
             if value in main.table and value not in main.system and value not in main.player:
                 n = n
-                count = count+1
+                count = count + 1
                 break;
-        if(count == 0):
+        if (count == 0):
             n = check.evaluate_user(main.player)
     entry_of_system(n)
-
 
 
 def entry_of_system(n):
@@ -47,8 +46,8 @@ def entry_of_system(n):
     while True:
         # print("while")
         if len(n) == 0:
-            if(len(main.player) == 1):
-                o = int(random.choice([8,4,5,6,2]))
+            if (len(main.player) == 1):
+                o = int(random.choice([8, 4, 5, 6, 2]))
             else:
                 o = int(random.choice(np.arange(1, 9)))
             if (o not in main.system) and (o not in main.player):
@@ -79,8 +78,8 @@ def entry_of_system(n):
 
 
 def entry_of_player():
-    if len(main.table) == len(main.system)+len(main.player):
-        print("DRAW MATCHING")
+    if len(main.table) == len(main.system) + len(main.player):
+        print("***********DRAW MATCHING*************")
         return 0
     else:
         def taking_input():
@@ -90,6 +89,7 @@ def entry_of_player():
             except:
                 print("An error occured @ please insert integer value :")
                 taking_input()
+
         x = taking_input()
         while True:
             try:
@@ -103,7 +103,6 @@ def entry_of_player():
                 x = taking_input()
                 break
 
-
         # print(x)
         main.player.append(main.table[x - 1])
         main.dis[x - 1] = "VIS"
@@ -114,7 +113,7 @@ def entry_of_player():
             print("*********YOU WON**********")
 
 
-            check = v.Evaluate()  # type: Evaluate
+check = v.Evaluate()  # type: Evaluate
 main = Main()
 
 if __name__ == "__main__":
@@ -122,7 +121,7 @@ if __name__ == "__main__":
         print(" Table View : ")
         display()
         # select_player = input("who place first : ")
-        if(input("who place first s/u: ").lower() == 'u'):
+        if (input("who place first s/u: ").lower() == 'u'):
             entry_of_player()
         else:
             system_time()
