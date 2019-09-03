@@ -31,7 +31,6 @@ def calculateSystemChances():
     chances_for_system = []
     if len(obj.table_values) == len(obj.system_entries) + len(obj.player_entries):
         print(" ************ DRAW MATCH ************")
-        return 0
     else:
         if len(obj.system_entries) >= 2:
             chances_for_system = check.systemChances(obj.system_entries)
@@ -90,7 +89,6 @@ def entry_of_player():
     if len(obj.table_values) == len(obj.system_entries) \
             + len(obj.player_entries):
         print("***********DRAW MATCHING*************")
-        return 0
     else:
         def taking_input():
             try:
