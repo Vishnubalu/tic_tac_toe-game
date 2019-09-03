@@ -1,9 +1,8 @@
 class Evaluate:
 
     def check_win(self, array):
-
-        last_entry = 0
-        re = 0
+        
+        return_value = False
         last_entry = array[len(array) - 1]
         if len(array) > 2:
             for i in range(0, len(array) - 1):
@@ -11,10 +10,10 @@ class Evaluate:
                 if last_entry + array[i] < 15:
                     if 15 - (last_entry + array[i]) in array and 15 - (last_entry + array[i]) != array[i]:
                         if 15 - (last_entry + array[i]) != last_entry:
-                            re = 1
-                            return re
-            return re
-        return re
+                            return_value = True
+                            return return_value
+            return return_value
+        return return_value
 
     def systemChances(self, array):
 
@@ -25,5 +24,5 @@ class Evaluate:
                     chances_for_system.append(15 - (array[len(array) - 1] + array[i]))
             return chances_for_system
         else:
-            return []
+            return chances_for_system
 
