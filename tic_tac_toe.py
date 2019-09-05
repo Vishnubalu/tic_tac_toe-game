@@ -1,6 +1,7 @@
 import evaluate
 import random
 import numpy as np
+import scrutiny
 
 
 class Game:
@@ -31,6 +32,7 @@ def calculateSystemChances():
     chances_for_system = []
     if len(obj.table_values) == len(obj.system_entries) + len(obj.player_entries):
         print(" ************ DRAW MATCH ************")
+        ins.inspect(obj.system_entries, obj.player_entries)
     else:
         if len(obj.system_entries) >= 2:
             chances_for_system = check.systemChances(obj.system_entries)
@@ -77,18 +79,21 @@ def entry_of_system(chances_for_system):
 
     obj.system_entries.append(system_choice)
     obj.dis[obj.table_values.index(system_choice)] = "SYS"
+    ins.display(obj.dis)
 
     display()
     if check.check_win(obj.system_entries) == 0:
         entry_of_player()
     else:
         print("********* system win *********")
+        ins.inspect(obj.system_entries, obj.player_entries)
 
 
 def entry_of_player():
     if len(obj.table_values) == len(obj.system_entries) \
             + len(obj.player_entries):
         print("***********DRAW MATCHING*************")
+        ins.inspect(obj.system_entries, obj.player_entries)
     else:
         def taking_input():
             try:
@@ -121,19 +126,26 @@ def entry_of_player():
             calculateSystemChances()
         else:
             print("*********YOU WON**********")
+            ins.inspect(obj.system_entries, obj.player_entries)
 
 
-check = evaluate.Evaluate()
-obj = Game()
+# check = evaluate.Evaluate()
+# obj = Game()
 
 if __name__ == "__main__":
+    
+    
+    check = evaluate.Evaluate()
+    obj = Game()
 
     while True:
         print(" Table View : ")
         display()
         if input("who place first s/u: ").lower() == 'u':
+            ins = scrutiny.Scrutiny(obj.dis, obj.table_values, 0)
             entry_of_player()
         else:
+            ins = scrutiny.Scrutiny(obj.dis, obj.table_values, 0)
             calculateSystemChances()
         print("Do you want to play again (y/n) : ")
         if input().lower() == 'n':
